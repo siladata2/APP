@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>HiOS Launcher</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Remix Icons (Clean and modern open source icons) -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" crossorigin href="/assets/index-Bgj6Dxrw.css">
+</head>
+<body class="theme-dark">
+
+  <!-- Desktop Device Container Wrapper (Simulates a phone on desktop screens) -->
+  <div class="device-wrapper">
+    <div class="phone-frame">
+      <div class="phone-screen" id="phoneScreen">
+        
+        <!-- Status Bar -->
+        <div class="status-bar" id="statusBar">
+          <span class="status-time" id="statusTime">12:00 PM</span>
+          <div class="status-icons">
+            <i class="ri-signal-tower-fill"></i>
+            <i class="ri-wifi-fill"></i>
+            <i class="ri-battery-2-charge-fill" id="statusBattery"></i>
+          </div>
+        </div>
+
+        <!-- Main Launcher Screens Container -->
+        <div class="launcher-viewport" id="launcherViewport">
+          
+          <!-- SCREEN -1: Zero Screen (Smart Assistant) -->
+          <div class="launcher-screen screen-zero" id="screenZero">
+            <div class="zero-header">
+              <h3>Smart Assistant</h3>
+              <span class="zero-date" id="zeroDate">Friday, June 19</span>
+            </div>
+            
+            <!-- RAM Booster Card -->
+            <div class="card ram-booster-card" id="ramBooster">
+              <div class="booster-ring">
+                <div class="booster-circle">
+                  <span class="booster-percent" id="ramPercent">64%</span>
+                  <span class="booster-label">RAM Used</span>
+                </div>
+              </div>
+              <div class="booster-info">
+                <h4>System Speedup</h4>
+                <p id="ramFeedback">Tap to boost and free up memory</p>
+              </div>
+            </div>
+
+            <!-- Quick Steps/Widgets Grid -->
+            <div class="widgets-grid">
+              <div class="card widget-item" onclick="toggleSimApp('calculator')">
+                <i class="ri-calculator-line color-calculator"></i>
+                <span>Calculator</span>
+              </div>
+              <div class="card widget-item" onclick="toggleSimApp('weather')">
+                <i class="ri-sun-cloudy-line color-weather"></i>
+                <span>Weather</span>
+              </div>
+              <div class="card widget-item" id="flashlightBtn">
+                <i class="ri-flashlight-fill color-flashlight"></i>
+                <span>Flashlight</span>
+              </div>
+              <div class="card widget-item" onclick="openSettings()">
+                <i class="ri-settings-4-line color-theme-settings"></i>
+                <span>Theme</span>
+              </div>
+            </div>
+
+            <!-- Mock News Feed -->
+            <div class="card news-card">
+              <div class="news-header">
+                <span><i class="ri-article-line"></i> Trending News</span>
+              </div>
+              <div class="news-item">
+                <img class="news-thumb" src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=150&auto=format&fit=crop&q=60" alt="HiOS V10">
+                <div class="news-content">
+                  <h5>HiOS Launcher V10 Released</h5>
+                  <p>Experience super fast animations, glassmorphism UI, and smart battery features.</p>
+                </div>
+              </div>
+              <div class="news-item">
+                <img class="news-thumb" src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=150&auto=format&fit=crop&q=60" alt="Themes">
+                <div class="news-content">
+                  <h5>Top 5 Android Themes of 2026</h5>
+                  <p>Discover the best custom icons and minimalist setups for your device.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SCREEN 0: Main Homescreen -->
+          <div class="launcher-screen screen-home" id="screenHome">
+            
+            <!-- Weather / Clock Widget -->
+            <div class="widget-weather-clock" id="weatherClockWidget">
+              <div class="widget-time-row">
+                <span class="widget-time" id="widgetTime">12:00</span>
+                <span class="widget-ampm" id="widgetAmPm">PM</span>
+              </div>
+              <div class="widget-date-row" id="widgetDate">Friday, June 19</div>
+              <div class="widget-weather-row">
+                <i class="ri-sun-cloudy-fill"></i>
+                <span id="weatherTemp">24°C</span>
+                <span class="weather-separator">•</span>
+                <span id="weatherLoc">Nairobi, Sunny</span>
+              </div>
+            </div>
+
+            <!-- HiOS Style Quick Search Bar -->
+            <div class="homescreen-search">
+              <i class="ri-search-line search-icon"></i>
+              <input type="text" placeholder="Search apps, web..." id="homeSearchInput" readonly onclick="openAppDrawer(true)">
+              <i class="ri-mic-line mic-icon"></i>
+            </div>
+
+            <!-- Main App Grid -->
+            <div class="app-grid" id="homescreenAppGrid">
+              <!-- Dynamically populated or statically placed for preview -->
+              <div class="app-icon-item" onclick="toggleSimApp('phone')">
+                <div class="icon-wrapper app-phone"><i class="ri-phone-fill"></i></div>
+                <span class="app-label">Phone</span>
+              </div>
+              <div class="app-icon-item" onclick="toggleSimApp('messages')">
+                <div class="icon-wrapper app-messages"><i class="ri-chat-3-fill"></i></div>
+                <span class="app-label">Messages</span>
+              </div>
+              <div class="app-icon-item" onclick="toggleSimApp('chrome')">
+                <div class="icon-wrapper app-chrome"><i class="ri-chrome-fill"></i></div>
+                <span class="app-label">Browser</span>
+              </div>
+              <div class="app-icon-item" onclick="toggleSimApp('camera')">
+                <div class="icon-wrapper app-camera"><i class="ri-camera-fill"></i></div>
+                <span class="app-label">Camera</span>
+              </div>
+              <div class="app-icon-item" onclick="toggleSimApp('gallery')">
+                <div class="icon-wrapper app-gallery"><i class="ri-image-2-fill"></i></div>
+                <span class="app-label">Gallery</span>
+              </div>
+              <div class="app-icon-item" onclick="toggleSimApp('playstore')">
+                <div class="icon-wrapper app-playstore"><i class="ri-play-store-fill"></i></div>
+                <span class="app-label">Play Store</span>
+              </div>
+              <div class="app-icon-item" onclick="openSettings()">
+                <div class="icon-wrapper app-settings-icon"><i class="ri-settings-4-fill"></i></div>
+                <span class="app-label">HiOS Settings</span>
+              </div>
+              <div class="app-icon-item" onclick="toggleSimApp('youtube')">
+                <div class="icon-wrapper app-youtube"><i class="ri-youtube-fill"></i></div>
+                <span class="app-label">YouTube</span>
+              </div>
+            </div>
+
+            <!-- Screen indicators -->
+            <div class="screen-indicators">
+              <span class="indicator" id="indZero"></span>
+              <span class="indicator active" id="indHome"></span>
+            </div>
+
+            <!-- Dock (Fixed Bottom Apps) -->
+            <div class="bottom-dock">
+              <div class="app-icon-item" onclick="toggleSimApp('phone')">
+                <div class="icon-wrapper app-phone"><i class="ri-phone-fill"></i></div>
+              </div>
+              <div class="app-icon-item" onclick="toggleSimApp('chrome')">
+                <div class="icon-wrapper app-chrome"><i class="ri-chrome-fill"></i></div>
+              </div>
+              <div class="app-icon-item" onclick="toggleSimApp('messages')">
+                <div class="icon-wrapper app-messages"><i class="ri-chat-3-fill"></i></div>
+              </div>
+              <div class="app-icon-item" onclick="toggleSimApp('camera')">
+                <div class="icon-wrapper app-camera"><i class="ri-camera-fill"></i></div>
+              </div>
+            </div>
+
+            <!-- Hint Arrow for swipe up -->
+            <div class="swipe-hint" onclick="openAppDrawer()">
+              <i class="ri-arrow-up-s-line"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sliding App Drawer -->
+        <div class="app-drawer" id="appDrawer">
+          <div class="drawer-handle" id="drawerHandle"></div>
+          <div class="drawer-search-bar">
+            <i class="ri-search-line"></i>
+            <input type="text" placeholder="Search apps..." id="drawerSearchInput">
+            <i class="ri-close-line" id="clearSearchBtn"></i>
+          </div>
+          <div class="drawer-app-list-container">
+            <div class="drawer-apps" id="drawerAppGrid">
+              <!-- Will be dynamically populated with all standard mock apps sorted alphabetically -->
+            </div>
+            <!-- Alphabet scrollbar -->
+            <div class="alphabet-index" id="alphabetIndex">
+              <!-- A-Z index lists -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Simulated App Launch Overlay (Shows whenever a simulated app is launched) -->
+        <div class="app-launch-overlay" id="appLaunchOverlay">
+          <div class="app-launch-content">
+            <!-- App Bar -->
+            <div class="app-bar">
+              <span class="app-title" id="launchedAppTitle">App</span>
+              <i class="ri-close-fill app-close-btn" onclick="closeSimApp()"></i>
+            </div>
+            <!-- Dynamic Content Window inside Launcher -->
+            <div class="app-content-body" id="launchedAppBody">
+              <!-- Loaded dynamically via js -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Launcher Settings Modal -->
+        <div class="settings-modal" id="settingsModal">
+          <div class="settings-header">
+            <h3>HiOS Launcher Settings</h3>
+            <i class="ri-close-line" onclick="closeSettings()"></i>
+          </div>
+          <div class="settings-body">
+            <!-- Wallpaper Option -->
+            <div class="setting-item">
+              <label><i class="ri-palette-line"></i> Wallpaper</label>
+              <div class="wallpaper-selector">
+                <div class="wp-option active" data-url="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1080&auto=format&fit=crop&q=80"></div>
+                <div class="wp-option" data-url="https://images.unsplash.com/photo-1604871000636-074fa5117945?w=1080&auto=format&fit=crop&q=80"></div>
+                <div class="wp-option" data-url="https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?w=1080&auto=format&fit=crop&q=80"></div>
+                <div class="wp-option" data-url="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=1080&auto=format&fit=crop&q=80"></div>
+              </div>
+            </div>
+            <!-- Theme Mode Option -->
+            <div class="setting-item">
+              <label><i class="ri-moon-line"></i> Dark Mode</label>
+              <div class="switch-container">
+                <input type="checkbox" id="darkModeToggle" checked>
+                <span class="slider round"></span>
+              </div>
+            </div>
+            <!-- Icon Shape Option -->
+            <div class="setting-item">
+              <label><i class="ri-shape-line"></i> Icon Style</label>
+              <select id="iconStyleSelect" class="settings-select">
+                <option value="squircle">Squircle (HiOS Default)</option>
+                <option value="round">Round</option>
+                <option value="square">Square</option>
+              </select>
+            </div>
+            <!-- App Version -->
+            <div class="settings-footer">
+              <p>HiOS Launcher Simulator v1.0.0</p>
+              <p>Prepared for Silatech</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Flashlight Element -->
+        <div class="flashlight-beam" id="flashlightBeam"></div>
+
+        <!-- Android Native Navigation Bar (Simulates standard Android buttons at the bottom) -->
+        <div class="nav-bar">
+          <div class="nav-btn" id="navBack" onclick="handleNavBack()"><i class="ri-arrow-left-s-line"></i></div>
+          <div class="nav-btn" id="navHome" onclick="handleNavHome()"><i class="ri-checkbox-blank-circle-line"></i></div>
+          <div class="nav-btn" id="navRecents" onclick="handleNavRecents()"><i class="ri-checkbox-blank-line"></i></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

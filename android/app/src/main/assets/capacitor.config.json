@@ -1,0 +1,6 @@
+{
+	"appId": "com.silatech.hioslauncher",
+	"appName": "HiOS Launcher",
+	"webDir": "dist",
+	"bundledWebRuntime": false
+}
